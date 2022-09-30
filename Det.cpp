@@ -51,6 +51,7 @@ double sum(double x[max_n][max_n],int n)
 	
 	for(int i=1;i<=n^n;i++)
 	{
+		sum1+=t(p,n)*product(x,p,n);
 		//开始生成序列数
 		p[1]++;
 		for(int j=1;j<=n;j++)
@@ -62,7 +63,7 @@ double sum(double x[max_n][max_n],int n)
 			}
 		}
 		
-		sum1+=t(p,n)*product(x,p,n);
+		
 	}
 	
 	
