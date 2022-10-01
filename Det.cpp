@@ -1,6 +1,5 @@
 #include <iostream>
-#include <stdio.h>
-#include <math.h>
+#include <cmath>
 #define N 900//比n^n大即可
 #define max_n 30//最高可算多少阶行列式
 
@@ -94,4 +93,3 @@ int main()
 	
 	return 0;
 }
-
