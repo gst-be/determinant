@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stdio.h>
+#include <math.h>
 #define N 900//比n^n大即可
 #define max_n 30//最高可算多少阶行列式
 
@@ -10,9 +11,9 @@ int t(int p[N],int n)
 {	
 	int c=0;//定义逆序数计数器
 	
-	for(int i=1;i<=n;i++)
+	for(int i=0;i<n-1;i++)
 	{
-		for(int j=i+1;j<=n;j++)
+		for(int j=i+1;j<n;j++)
 		{
 			if(p[i]>p[j])  
 			c++;//出现逆序则自增1
@@ -31,7 +32,7 @@ int t(int p[N],int n)
 double product(double x[max_n][max_n],int p[N],int n)
 {
 	double pdt=1;//乘积初始化为1
-	for(int i=1;i<=n;i++)
+	for(int i=0;i<n;i++)
 	{
 		pdt*=x[i][p[i]];
 	}
@@ -43,22 +44,23 @@ double sum(double x[max_n][max_n],int n)
 {
 	double sum1=0;//初始化结果为0
 	int p[N];//定义序列数，从p[1]开始每一位的值对应取x[][]中每行的第几列
-	for(int i=1;i<=N;i++)
+	for(int i=0;i<N;i++)
 	{
-		p[i]=1;//初始化
+		p[i]=0;//初始化
 	}
 	
 	
-	for(int i=1;i<=n^n;i++)
+	for(int i=0;i<pow(n,n);i++)
 	{
 		sum1+=t(p,n)*product(x,p,n);
+		
 		//开始生成序列数
-		p[1]++;
-		for(int j=1;j<=n;j++)
+		p[0]++;
+		for(int j=0;j<n;j++)
 		{
-			if(p[j]==n+1)
+			if(p[j]==n)
 			{
-				p[j]=1;
+				p[j]=0;
 				p[j+1]++;
 			}
 		}
@@ -72,15 +74,15 @@ double sum(double x[max_n][max_n],int n)
 
 int main()
 {
-	int n;
+	int n;//阶数
 	double x[max_n][max_n];
 	cout<<"input n=";
 	cin>>n;//定义行列式阶数
 
 	//输入行列式的每一项的值
-	for(int i=1;i<=n;i++)
+	for(int i=0;i<n;i++)
 	{
-		for(int j=1;j<=n;j++)
+		for(int j=0;j<n;j++)
 		{
 			cout<<"input x["<<i<<"]["<<j<<"]=";
 			cin>>x[i][j];
